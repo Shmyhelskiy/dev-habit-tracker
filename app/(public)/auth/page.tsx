@@ -6,26 +6,36 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
 
-export default function LoginPage() {
+export default function AuthPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-   const supabase = createClient();
+  const supabase = createClient();
 
-  const handleLogin = async (e: React.FormEvent) => {
+const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { data, error } = await supabase.auth.signInWithPassword({
+
+    const { data, error } = await supabase.auth.signUp({
       email,
       password,
-    })
+      options: {
+        emailRedirectTo: `/`,
+      },
+    });
 
-    if (!error) {
-  router.push('/');
-  router.refresh();
-} else {
-  alert(error.message);
-}
+    console.log(data, error);
+
+    if (error) {
+      alert(error.message); 
+      return;
+    }
+
+    if (data.user) {
+      alert("Перевірте пошту для підтвердження реєстрації!");
+      router.push("/login");
+    }
+    
   };
 
   return (
@@ -33,14 +43,14 @@ export default function LoginPage() {
       <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-2xl dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-            Вхід
+            Реєстрація
           </h1>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            Увійдіть до свого облікового запису
+            Створіть нову сторінку облікового запису
           </p>
         </div>
         
-        <form onSubmit={handleLogin} className="flex flex-col gap-5">
+        <form onSubmit={handleRegister} className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
             <label htmlFor="email" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
               Електронна пошта
@@ -77,7 +87,7 @@ export default function LoginPage() {
             disabled={!email || !password}
             className="mt-2 w-full h-12 rounded-xl text-base cursor-pointer"
           >
-            Увійти
+            Зареєструватись
           </Button>
         </form>
 
@@ -88,7 +98,7 @@ export default function LoginPage() {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="bg-white px-4 text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
-                Немає акаунту?
+                Вже є акаунт?
               </span>
             </div>
           </div>
@@ -97,10 +107,10 @@ export default function LoginPage() {
             type="button"
             variant="outline"
             size="lg"
-            onClick={() => router.push('/auth')}
+            onClick={() => router.push('/login')}
             className="w-full h-12 rounded-xl text-base cursor-pointer"
           >
-            Зареєструватись
+            Увійти
           </Button>
         </div>
       </div>
