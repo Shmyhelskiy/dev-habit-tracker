@@ -3,12 +3,17 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { createClient } from "@/lib/supabase/server";
 import {getTranslations} from 'next-intl/server';
-import { LanguageSwitcher } from "./LanguageSwitcher";
+import { LanguageSwitcher } from "./language-switcher";
+import ThemeToggle from "@/components/ui/custom/theme-toggle";
+import { cookies } from "next/headers";
 
 export async function Navbar() {
 const supabase = await createClient();
 const { data: { user } } = await supabase.auth.getUser();
 const t = await getTranslations('Navbar');
+
+ const cookieStore = await cookies();
+  const themeValue = cookieStore.get("theme")?.value || "light";
 
 
 async function handleSignOut() {
@@ -27,6 +32,7 @@ async function handleSignOut() {
         </div>
         <div className="flex items-center gap-2">
           <LanguageSwitcher />
+          <ThemeToggle  initialTheme={themeValue}/>
           {user ? (
             <Button variant="outline" onClick={handleSignOut}>
               {t('logout')}

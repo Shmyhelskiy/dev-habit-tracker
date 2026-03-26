@@ -12,7 +12,8 @@ export function LanguageSwitcher() {
 
   const toggleLocale = () => {
     const nextLocale = locale === "en" ? "uk" : "en";
-    router.replace(pathname, { locale: nextLocale });
+    
+    window.location.href = `/${nextLocale}${pathname === "/" ? "" : pathname}`;
   };
 
   return (
