@@ -39,13 +39,17 @@ export async function updateSession(request: NextRequest) {
 
   const user = data?.claims;
 
+  const pathname = request.nextUrl.pathname;
+  const isAuthPage = pathname.match(/^\/(en|uk)?\/?(login|auth)/);
+
   if (
     !user &&
-    !request.nextUrl.pathname.startsWith("/login") &&
-    !request.nextUrl.pathname.startsWith("/auth")
+    !isAuthPage
   ) {
     const url = request.nextUrl.clone();
-    url.pathname = "/login";
+    const localeMatch = pathname.match(/^\/(en|uk)/);
+    const prefix = localeMatch ? localeMatch[0] : "";
+    url.pathname = `${prefix}/login`;
     return NextResponse.redirect(url);
   }
 
