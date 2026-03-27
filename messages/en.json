@@ -21,5 +21,11 @@
         "noAccount": "No account?",
         "description": "Sign in to your account",
         "register": "Register"
+    },
+    "HeroSection": {
+        "title": "BreakTime",
+        "description": "Smart assistant for break reminders. Eye exercises, stretching, and walks - all for your comfort and productivity.",
+        "button": "Install Extension",
+        "health": "Take care of your health 💙"
     }
 }
