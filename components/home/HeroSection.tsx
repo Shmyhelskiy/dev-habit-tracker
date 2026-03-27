@@ -5,14 +5,18 @@ import { getTranslations } from "next-intl/server";
 export async function HeroSection() {
   const t = await getTranslations('HeroSection');
   return (
-    <section className="py-12 md:py-20 lg:py-32 px-4 bg-gradient-to-b from-[#ebf4ff] to-background dark:from-[#0d1e36] dark:to-background">
-      <div className="container mx-auto max-w-4xl text-center">
+    <section 
+    className="py-12 md:py-20 lg:py-32 px-4 bg-gradient-to-b from-[#ebf4ff] to-background dark:from-[#0d1e36] dark:to-background"
+    aria-labelledby="hero-title"
+    >
+      <div className="container mx-auto max-w-4xl text-center" role="status">
         <div className="inline-flex items-center justify-center mb-6 px-4 py-2 bg-primary/10 text-primary rounded-full text-xs md:text-sm font-medium">
           {t('health')}
         </div>
         
         <h1 
-          className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 text-brand-title"
+          className="text-4xl md:text-5xl lg:text-7xl font-bold mb-6 text-brand-title tracking-tight"
+        id="hero-title"
         >
           {t('title')}
         </h1>
