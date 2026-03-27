@@ -27,5 +27,31 @@
         "description": "Smart assistant for break reminders. Eye exercises, stretching, and walks - all for your comfort and productivity.",
         "button": "Install Extension",
         "health": "Take care of your health 💙"
+    },
+    "RemindersSection": {
+        "title": "Reminders Settings",
+        "description": "Choose which reminders you want to receive, or create your own"
+    },
+    "Reminders": {
+        "eye-exercises": {
+            "title": "Eye Exercises",
+            "description": "20-20-20 rule: every 20 minutes look at an object 6 meters away for 20 seconds",
+            "intervalDescription": "Every 20 minutes"
+        },
+        "stretch": {
+            "title": "Stretch",
+            "description": "Light physical activity to prevent musculoskeletal diseases",
+            "intervalDescription": "Every 45 minutes"
+        },
+        "walk": {
+            "title": "Walk",
+            "description": "Short walk to improve blood circulation and concentration",
+            "intervalDescription": "Every 2 hours"
+        },
+        "coffee-break": {
+            "title": "Coffee Break",
+            "description": "Time to rest and drink your favorite beverage",
+            "intervalDescription": "Every 3 hours"
+        }
     }
 }
