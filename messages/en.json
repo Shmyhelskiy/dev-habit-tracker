@@ -1,1 +1,25 @@
-{"Navbar": {"login": "Login", "logout": "Logout", "register": "Register"}}
+{
+    "Navbar": {
+        "login": "Login",
+        "logout": "Logout",
+        "register": "Register"
+    },
+    "SignUp": {
+        "title": "Sign Up",
+        "email": "Email",
+        "password": "Password",
+        "submit": "Sign Up",
+        "noAccount": "No account?",
+        "description": "Create a new account",
+        "login": "Login"
+    },
+    "SignIn": {
+        "title": "Sign In",
+        "email": "Email",
+        "password": "Password",
+        "submit": "Sign In",
+        "noAccount": "No account?",
+        "description": "Sign in to your account",
+        "register": "Register"
+    }
+}

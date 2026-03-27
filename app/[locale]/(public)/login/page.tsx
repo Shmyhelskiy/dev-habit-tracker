@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
+import { useTranslations } from "next-intl";
 
 export default function LoginPage() {
+  const t = useTranslations('SignIn');
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -33,17 +35,17 @@ export default function LoginPage() {
       <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-2xl dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-            Вхід
+            {t('title')}
           </h1>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            Увійдіть до свого облікового запису
+            {t('description')}
           </p>
         </div>
         
         <form onSubmit={handleLogin} className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
             <label htmlFor="email" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-              Електронна пошта
+              {t('email')}
             </label>
             <Input
               id="email"
@@ -58,7 +60,7 @@ export default function LoginPage() {
           
           <div className="flex flex-col gap-2">
             <label htmlFor="password" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-              Пароль
+              {t('password')}
             </label>
             <Input
               id="password"
@@ -77,7 +79,7 @@ export default function LoginPage() {
             disabled={!email || !password}
             className="mt-2 w-full h-12 rounded-xl text-base cursor-pointer"
           >
-            Увійти
+            {t('submit')}
           </Button>
         </form>
 
@@ -88,7 +90,7 @@ export default function LoginPage() {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="bg-white px-4 text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
-                Немає акаунту?
+                {t('noAccount')}
               </span>
             </div>
           </div>
@@ -100,7 +102,7 @@ export default function LoginPage() {
             onClick={() => router.push('/auth')}
             className="w-full h-12 rounded-xl text-base cursor-pointer"
           >
-            Зареєструватись
+            {t('register')}
           </Button>
         </div>
       </div>

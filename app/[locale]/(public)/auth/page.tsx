@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { createClient } from "@/lib/supabase/client";
+import { useTranslations } from "next-intl";
 
 export default function AuthPage() {
+  const t = useTranslations('SignUp');
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const router = useRouter();
@@ -43,17 +45,17 @@ const handleRegister = async (e: React.FormEvent) => {
       <div className="w-full max-w-sm rounded-2xl bg-white p-8 shadow-2xl dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800">
         <div className="mb-8 text-center">
           <h1 className="text-3xl font-bold text-zinc-900 dark:text-zinc-100">
-            Реєстрація
+            {t('title')}
           </h1>
           <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-            Створіть нову сторінку облікового запису
+            {t('description')}
           </p>
         </div>
         
         <form onSubmit={handleRegister} className="flex flex-col gap-5">
           <div className="flex flex-col gap-2">
             <label htmlFor="email" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-              Електронна пошта
+              {t('email')}
             </label>
             <Input
               id="email"
@@ -68,7 +70,7 @@ const handleRegister = async (e: React.FormEvent) => {
           
           <div className="flex flex-col gap-2">
             <label htmlFor="password" className="text-sm font-medium text-zinc-700 dark:text-zinc-300">
-              Пароль
+              {t('password')}
             </label>
             <Input
               id="password"
@@ -87,7 +89,7 @@ const handleRegister = async (e: React.FormEvent) => {
             disabled={!email || !password}
             className="mt-2 w-full h-12 rounded-xl text-base cursor-pointer"
           >
-            Зареєструватись
+            {t('submit')}
           </Button>
         </form>
 
@@ -98,7 +100,7 @@ const handleRegister = async (e: React.FormEvent) => {
             </div>
             <div className="relative flex justify-center text-sm">
               <span className="bg-white px-4 text-zinc-500 dark:bg-zinc-900 dark:text-zinc-400">
-                Вже є акаунт?
+                  {t('noAccount')}
               </span>
             </div>
           </div>
@@ -110,7 +112,7 @@ const handleRegister = async (e: React.FormEvent) => {
             onClick={() => router.push('/login')}
             className="w-full h-12 rounded-xl text-base cursor-pointer"
           >
-            Увійти
+            {t('login')}
           </Button>
         </div>
       </div>
