@@ -24,8 +24,8 @@ export function LanguageSwitcher() {
       className="flex items-center gap-2"
       aria-label="Toggle language"
     >
-      <Globe className="h-4 w-4" />
-      <span className="uppercase font-medium">{locale === 'uk' ? 'ua' : locale}</span>
+      <Globe className="size-4" />
+      <span className="uppercase font-medium translate-y-px">{locale === 'uk' ? 'ua' : locale}</span>
     </Button>
   );
 }
