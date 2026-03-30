@@ -2,7 +2,7 @@ export type Reminder = {
   id: string;
   title?: string;
   description?: string;
-  icon: any;
+  icon: string;
   enabled: boolean;
   intervalDescription?: string;
   interval: number;

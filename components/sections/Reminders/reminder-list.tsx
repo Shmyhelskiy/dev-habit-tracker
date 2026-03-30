@@ -6,6 +6,7 @@ import { ReminderToggle } from "@/components/ui/custom/reminder-toggle";
 import { reminders } from "@/lib/constants/reminder";
 import { useTranslations } from "next-intl";
 import { useState } from "react";
+import { getIcon } from "@/lib/helpers/get-icon";
 
 export default  function ReminderList() {
     const t =  useTranslations('Reminders');
@@ -26,12 +27,14 @@ export default  function ReminderList() {
 
     return (
         <div className="flex flex-col gap-6">
-            {remindersList.map((reminder) => (
+            {remindersList.map((reminder) => {
+                const icon = getIcon(reminder.icon)
+                return (
                 <Card key={reminder.id} className="relative overflow-hidden group hover:shadow-lg transition-all duration-300 border-border/50">
                     <div className="flex flex-col md:flex-row md:items-center">
                         <CardHeader className="flex flex-row items-center gap-4 pb-2 md:pb-6 flex-1">
                             <div className="p-2.5 rounded-xl bg-primary/10 text-primary group-hover:bg-primary group-hover:text-primary-foreground transition-colors duration-300">
-                                <reminder.icon className="size-6" />
+                                {icon}
                             </div>
                             <div className="flex flex-col">
                                 <CardTitle className="text-xl group-hover:text-primary transition-colors duration-300">
@@ -54,7 +57,7 @@ export default  function ReminderList() {
                         </CardContent>
                     </div>
                 </Card>
-            ))}
+            )})}
         </div>
     );
 }
